@@ -1,0 +1,408 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>PDF Workspace</title>
+
+    <link rel="stylesheet"
+          href="{% static 'accounts/css/pdf_workspace.css' %}">
+
+</head>
+
+<body>
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">Task Manager</div>
+
+    <div class="nav-links">
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+        <a href="{% url 'tasks' %}">Tasks</a>
+        <a href="{% url 'add_task' %}">AddTask</a>
+        <a href="{% url 'pdf_workspace' %}" class="nav-link">PDF Tasks</a>
+        <a href="{% url 'calendar' %}">Calendar</a>
+        <a href="{% url 'reports' %}">Reports</a>
+        <a href="{% url 'profile' %}">Profile</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</div>
+<div class="container">
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <h2>PDF Study Workspace</h2>
+
+        <!-- UPLOAD FORM -->
+
+        <form method="POST"
+              enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <input type="text"
+                   name="title"
+                   placeholder="PDF Title"
+                   required>
+
+            <input type="file"
+                   name="pdf_file"
+                   accept=".pdf"
+                   required>
+
+            <button type="submit">
+                Upload PDF
+            </button>
+
+        </form>
+
+        <!-- PDF LIST -->
+
+        <div class="pdf-list">
+
+            {% for pdf in pdfs %}
+
+            <div class="pdf-card"
+                 id="pdf-card-{{ pdf.id }}">
+
+                <h3>{{ pdf.title }}</h3>
+
+                <p>
+
+                    <span id="completed-{{ pdf.id }}">
+                       {{ pdf.completed_pages|length }}
+                    </span>
+
+                    /
+
+                    {{ pdf.total_pages }} pages
+
+                </p>
+
+                <!-- PROGRESS BAR -->
+
+                <div class="progress-bar">
+
+    <div
+        class="progress-fill"
+        id="progress-fill-{{ pdf.id }}"
+        data-progress="{{ pdf.progress }}"
+    ></div>
+
+</div>
+
+<p class="progress-text" id="progress-text-{{ pdf.id }}">
+    {{ pdf.progress }}% Completed
+</p>
+
+<button
+class="open-btn"
+data-url="{{ pdf.pdf_file.url }}"
+data-id="{{ pdf.id }}"
+data-pages="{{ pdf.total_pages }}"
+data-completed='{{ pdf.completed_pages|safe }}'
+
+onclick="openPDF(
+    this.dataset.url,
+    this.dataset.id,
+    this.dataset.pages,
+    JSON.parse(this.dataset.completed)
+)"
+>
+    Open PDF
+</button>
+
+                <!-- DELETE BUTTON -->
+
+                <form method="POST"
+                      action="{% url 'delete_pdf' pdf.id %}">
+
+                    {% csrf_token %}
+
+                    <button type="submit"
+                            class="delete-btn">
+
+                        Delete PDF
+
+                    </button>
+
+                </form>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    <!-- PDF VIEWER -->
+
+    <div class="viewer-section">
+
+        <!-- TOP BAR -->
+
+        <div class="top-bar">
+
+            <button onclick="prevPage()">
+                ⬅ Prev
+            </button>
+
+            <div class="page-count">
+
+                Page
+
+                <span id="page-num">1</span>
+
+                /
+
+                <span id="page-count">0</span>
+
+            </div>
+
+            <button onclick="nextPage()">
+                Next ➡
+            </button>
+
+        </div>
+
+        <!-- LIVE PROGRESS -->
+
+        <div class="live-progress">
+
+            <div class="progress-bar">
+
+                <div class="progress-fill"
+                     id="liveProgress">
+                </div>
+
+            </div>
+
+            <p id="progressText">
+                0% Completed
+            </p>
+
+        </div>
+
+        <!-- PDF CANVAS -->
+
+        <div class="canvas-container">
+
+            <canvas id="pdf-render"></canvas>
+
+        </div>
+
+        <!-- COMPLETE BUTTON -->
+
+        <button class="complete-btn"
+                onclick="markCompleted()">
+
+            Mark This Page Completed
+
+        </button>
+
+    </div>
+
+</div>
+
+</body>
+
+<!-- PDF JS -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+
+<script>
+
+let pdfDoc = null;
+
+let pageNum = 1;
+
+let completedPages = [];
+
+let currentPDFId = null;
+
+let totalPDFPages = 0;
+
+const canvas = document.getElementById('pdf-render');
+
+const ctx = canvas.getContext('2d');
+
+function openPDF(url, pdfId, totalPages, savedPages) {
+
+    currentPDFId = pdfId;
+
+    totalPDFPages = totalPages;
+
+    completedPages = savedPages || [];
+
+    pageNum = 1;
+
+    let progress =
+        (completedPages.length / totalPDFPages) * 100;
+
+    progress = Math.floor(progress);
+
+    /* LOAD SAVED PROGRESS */
+
+    document.getElementById('liveProgress').style.width =
+        progress + "%";
+
+    document.getElementById('progressText').innerText =
+        progress + "% Completed";
+
+    pdfjsLib.getDocument(url).promise.then(pdf => {
+
+        pdfDoc = pdf;
+
+        document.getElementById('page-count').innerText =
+            pdf.numPages;
+
+        renderPage(pageNum);
+    });
+}
+function renderPage(num) {
+
+    pdfDoc.getPage(num).then(page => {
+
+        const viewport = page.getViewport({ scale: 1.4 });
+
+        canvas.height = viewport.height;
+
+        canvas.width = viewport.width;
+
+        page.render({
+
+            canvasContext: ctx,
+
+            viewport: viewport
+
+        });
+
+        document.getElementById('page-num').innerText = num;
+
+    });
+}
+
+function prevPage() {
+
+    if(pageNum <= 1) return;
+
+    pageNum--;
+
+    renderPage(pageNum);
+}
+
+function nextPage() {
+
+    if(pageNum >= pdfDoc.numPages) return;
+
+    pageNum++;
+
+    renderPage(pageNum);
+}
+
+function getCookie(name) {
+
+    let cookieValue = null;
+
+    if (document.cookie && document.cookie !== '') {
+
+        const cookies = document.cookie.split(';');
+
+        for (let i = 0; i < cookies.length; i++) {
+
+            const cookie = cookies[i].trim();
+
+            if (cookie.substring(0, name.length + 1) ===
+                (name + '=')) {
+
+                cookieValue = decodeURIComponent(
+                    cookie.substring(name.length + 1)
+                );
+
+                break;
+            }
+        }
+    }
+
+    return cookieValue;
+}
+
+function markCompleted() {
+
+    if(!completedPages.includes(pageNum)) {
+
+        completedPages.push(pageNum);
+    }
+
+    let progress =
+        (completedPages.length / totalPDFPages) * 100;
+
+    progress = Math.floor(progress);
+
+    /* LIVE VIEWER BAR */
+
+    document.getElementById('liveProgress').style.width =
+        progress + "%";
+
+    document.getElementById('progressText').innerText =
+        progress + "% Completed";
+
+    /* CARD BAR */
+
+    document.getElementById(
+        'progress-fill-' + currentPDFId
+    ).style.width = progress + "%";
+
+    document.getElementById(
+        'progress-text-' + currentPDFId
+    ).innerText = progress + "% Completed";
+
+    document.getElementById(
+        'completed-' + currentPDFId
+    ).innerText = completedPages.length;
+
+    /* SAVE TO DATABASE */
+
+    fetch('/save-progress/', {
+
+        method: 'POST',
+
+        headers: {
+
+            'Content-Type': 'application/json',
+
+            'X-CSRFToken': getCookie('csrftoken')
+        },
+
+        body: JSON.stringify({
+
+            pdf_id: currentPDFId,
+
+            completed_pages: completedPages
+        })
+    });
+}
+</script>
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const bars = document.querySelectorAll(".progress-fill");
+
+    bars.forEach(bar => {
+
+        let progress = bar.dataset.progress;
+
+        bar.style.width = progress + "%";
+
+    });
+
+});
+
+</script>
+
+</html>

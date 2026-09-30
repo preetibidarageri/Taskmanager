@@ -1,0 +1,203 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reports</title>
+    <link rel="stylesheet" href="{% static 'accounts/css/reports.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">Task Manager</div>
+
+    <div class="nav-links">
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+        <a href="{% url 'tasks' %}">Tasks</a>
+        <a href="{% url 'add_task' %}">Add Task</a>
+        <a href="{% url 'pdf_workspace' %}" class="nav-link">PDF Tasks</a>
+        <a href="{% url 'calendar' %}">Calendar</a>
+        <a href="{% url 'reports' %}">Reports</a>
+         <a href="{% url 'profile' %}">Profile</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</div>
+
+<!-- HEADER -->
+<div class="report-header">
+    <h1>Task Analytics & Reports</h1>
+    <p>Track productivity, completion rate, and overdue performance</p>
+</div>
+
+<!-- STATS -->
+<div class="stats-container">
+
+    <div class="stat-card">
+        <h3>Total Tasks</h3>
+        <p>{{ total }}</p>
+    </div>
+
+    <div class="stat-card pending">
+        <h3>Pending</h3>
+        <p>{{ pending }}</p>
+    </div>
+
+    <div class="stat-card progress">
+        <h3>In Progress</h3>
+        <p>{{ progress }}</p>
+    </div>
+
+    <div class="stat-card completed">
+        <h3>Completed</h3>
+        <p>{{ completed }}</p>
+    </div>
+
+    <div class="stat-card overdue">
+        <h3>Overdue</h3>
+        <p>{{ overdue }}</p>
+    </div>
+
+</div>
+
+<!-- CHARTS -->
+<div class="charts-section">
+
+    <div class="chart-card">
+        <h2>Task Status Report</h2>
+        <canvas id="statusChart"></canvas>
+    </div>
+
+    <div class="chart-card">
+        <h2>Priority Analysis</h2>
+        <canvas id="priorityChart"></canvas>
+    </div>
+
+</div>
+
+<!-- PRODUCTIVITY -->
+<div class="productivity-section">
+
+    <div class="activity-card">
+        <h2>Recent Tasks</h2>
+
+        {% for task in recent_tasks %}
+        <div class="activity-item">
+            <h4>{{ task.title }}</h4>
+            <p>{{ task.status }} • {{ task.priority }}</p>
+        </div>
+        {% empty %}
+        <p>No recent tasks</p>
+        {% endfor %}
+    </div>
+
+    <div class="activity-card">
+        <h2>Weekly Productivity</h2>
+
+        <div class="productivity-box">
+            <h1>{{ productivity }}%</h1>
+            <p>Tasks Completed</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- TASK TABLE -->
+<div class="table-container">
+
+    <div class="table-header">
+        <h2>All Tasks Report</h2>
+    </div>
+
+    <table>
+
+        <tr>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Priority</th>
+            <th>Due Date</th>
+        </tr>
+
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.title }}</td>
+            <td>{{ task.status }}</td>
+            <td>{{ task.priority }}</td>
+            <td>{{ task.due_date }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</div>
+
+<!-- CHART JS -->
+<script>
+
+const pending = Number("{{ pending|default:0 }}");
+const progress = Number("{{ progress|default:0 }}");
+const completed = Number("{{ completed|default:0 }}");
+
+const statusChart = new Chart(
+    document.getElementById('statusChart'),
+    {
+        type: 'doughnut',
+
+        data: {
+            labels: ['Pending', 'In Progress', 'Completed'],
+
+            datasets: [{
+                data: [
+                    pending,
+                    progress,
+                    completed
+                ],
+
+                backgroundColor: [
+                    '#b66d52',
+                    '#c9a66b',
+                    '#6f8f8f'
+                ]
+            }]
+        }
+    }
+);
+
+</script>
+
+<script>
+
+const low = Number("{{ low|default:0 }}");
+const medium = Number("{{ medium|default:0 }}");
+const high = Number("{{ high|default:0 }}");
+
+const priorityChart = new Chart(
+    document.getElementById('priorityChart'),
+    {
+        type: 'bar',
+
+        data: {
+            labels: ['Low', 'Medium', 'High'],
+
+            datasets: [{
+                data: [
+                    low,
+                    medium,
+                    high
+                ],
+
+                backgroundColor: [
+                    '#93a8a3',
+                    '#c9a66b',
+                    '#b66d52'
+                ]
+            }]
+        }
+    }
+);
+
+</script>
+
+</body>
+</html>

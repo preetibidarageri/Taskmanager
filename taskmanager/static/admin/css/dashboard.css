@@ -1,0 +1,546 @@
+/* ========================================= */
+/* RESET */
+/* ========================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins', sans-serif;
+    background:#eef2f7;
+    color:#1e293b;
+    overflow-x:hidden;
+}
+
+/* ========================================= */
+/* REMOVE DJANGO LOGO */
+/* ========================================= */
+
+#branding img,
+#site-name img,
+#header img{
+    display:none !important;
+}
+
+/* ========================================= */
+/* FULL SCREEN FIX */
+/* ========================================= */
+
+#container,
+#content,
+#content-main{
+    width:100% !important;
+    max-width:100% !important;
+}
+
+#content{
+    padding:0 !important;
+}
+
+/* ========================================= */
+/* HEADER */
+/* ========================================= */
+
+#header{
+    width:100%;
+    height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 30px;
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    position:sticky;
+    top:0;
+    z-index:999;
+    box-shadow:0 5px 20px rgba(0,0,0,0.15);
+}
+
+#site-name a{
+    color:white !important;
+    font-size:26px;
+    font-weight:700;
+    text-decoration:none;
+}
+
+/* ========================================= */
+/* USER TOOLS */
+/* ========================================= */
+
+#user-tools{
+    background:rgba(255,255,255,0.08);
+    padding:10px 14px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:white !important;
+    font-size:13px;
+}
+
+#user-tools a{
+    color:#cbd5e1 !important;
+    text-decoration:none;
+    padding:6px 10px;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+#user-tools a:hover{
+    background:rgba(255,255,255,0.15);
+    color:white !important;
+}
+
+/* ========================================= */
+/* REMOVE SIDEBAR */
+/* ========================================= */
+
+#nav-sidebar,
+.toggle-nav-sidebar{
+    display:none !important;
+}
+
+/* ========================================= */
+/* DASHBOARD */
+/* ========================================= */
+
+.custom-dashboard{
+    width:100%;
+    padding:30px;
+}
+
+.top-dashboard{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:25px;
+}
+
+/* ========================================= */
+/* DASHBOARD CARDS */
+/* ========================================= */
+
+.dashboard-cards{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.dash-card{
+    padding:28px;
+    border-radius:22px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.06);
+    transition:0.3s;
+}
+
+.dash-card:hover{
+    transform:translateY(-5px);
+}
+
+.dash-card h3{
+    font-size:15px;
+    margin-bottom:10px;
+    color:#475569;
+}
+
+.dash-card h1{
+    font-size:40px;
+    font-weight:700;
+}
+
+/* CARD COLORS */
+
+.users{
+    background:linear-gradient(135deg,#dbeafe,#bfdbfe);
+}
+
+.tasks{
+    background:linear-gradient(135deg,#dcfce7,#bbf7d0);
+}
+
+.pending{
+    background:linear-gradient(135deg,#fef3c7,#fde68a);
+}
+
+.completed{
+    background:linear-gradient(135deg,#fee2e2,#fecaca);
+}
+
+/* ========================================= */
+/* CHART */
+/* ========================================= */
+
+.chart-box{
+    background:white;
+    padding:28px;
+    border-radius:22px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.06);
+}
+
+.chart-box h2{
+    margin-bottom:20px;
+    font-size:22px;
+    color:#0f172a;
+}
+
+/* ========================================= */
+/* DJANGO MODULE SECTION */
+/* ========================================= */
+
+.django-admin-section{
+    width:100%;
+    padding:0 30px 40px;
+}
+
+/* ========================================= */
+/* MODULES */
+/* ========================================= */
+
+.module{
+    background:white !important;
+    border:none !important;
+    border-radius:20px !important;
+    overflow:hidden;
+    margin-bottom:25px !important;
+    box-shadow:0 8px 20px rgba(0,0,0,0.06);
+}
+
+/* MODULE TITLES */
+
+.module h2,
+.module caption,
+.inline-group h2{
+    background:linear-gradient(135deg,#0f172a,#334155) !important;
+    color:white !important;
+    padding:16px 20px !important;
+    font-size:16px !important;
+}
+
+/* ========================================= */
+/* TABLES */
+/* ========================================= */
+
+.module table,
+.results table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.module th,
+.results th{
+    background:#f8fafc;
+    padding:14px;
+    text-align:left;
+    color:#334155;
+}
+
+.module td,
+.results td{
+    padding:14px;
+    border-top:1px solid #e2e8f0;
+}
+
+.module tr:hover,
+.results tr:hover{
+    background:#f1f5f9;
+}
+
+/* ========================================= */
+/* BREADCRUMBS */
+/* ========================================= */
+
+.breadcrumbs{
+    background:white !important;
+    padding:12px 20px !important;
+    border-radius:14px;
+    margin:20px 30px !important;
+    box-shadow:0 6px 15px rgba(0,0,0,0.06);
+}
+
+/* ========================================= */
+/* FILTER PANEL */
+/* ========================================= */
+
+#changelist-filter{
+    background:white !important;
+    border-radius:18px;
+    padding:16px !important;
+    box-shadow:0 8px 20px rgba(0,0,0,0.06);
+}
+
+#changelist-filter h2{
+    background:linear-gradient(135deg,#0f172a,#334155) !important;
+    color:white !important;
+    padding:12px !important;
+    border-radius:12px;
+}
+
+#changelist-filter a{
+    display:block;
+    padding:8px 10px;
+    border-radius:10px;
+    margin-bottom:6px;
+    color:#334155 !important;
+    transition:0.3s;
+}
+
+#changelist-filter a:hover{
+    background:#eff6ff;
+    color:#2563eb !important;
+}
+
+/* ========================================= */
+/* BUTTONS */
+/* ========================================= */
+
+.button,
+input[type=submit],
+button{
+    background:linear-gradient(135deg,#2563eb,#1d4ed8) !important;
+    color:white !important;
+    border:none !important;
+    padding:10px 18px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+/* ========================================= */
+/* FORMS */
+/* ========================================= */
+
+input,
+textarea,
+select{
+    border:1px solid #cbd5e1 !important;
+    border-radius:12px !important;
+    padding:10px !important;
+    background:#f8fafc !important;
+}
+
+/* ========================================= */
+/* RESPONSIVE */
+/* ========================================= */
+
+@media(max-width:1000px){
+
+    .top-dashboard{
+        grid-template-columns:1fr;
+    }
+
+    .dashboard-cards{
+        grid-template-columns:1fr;
+    }
+
+    #user-tools{
+        display:none;
+    }
+}
+/* ========================================= */
+/* CONTENT LAYOUT FIX */
+/* ========================================= */
+
+#content{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+}
+
+/* ========================================= */
+/* DJANGO MAIN AREA */
+/* ========================================= */
+
+#content-main{
+    width:100% !important;
+    float:none !important;
+}
+
+/* ========================================= */
+/* RECENT ACTIONS CONTAINER */
+/* ========================================= */
+
+#content-related{
+    width:100% !important;
+    margin-top:25px;
+    float:none !important;
+}
+
+/* ========================================= */
+/* RECENT ACTIONS BOX */
+/* ========================================= */
+
+#recent-actions-module{
+    width:100%;
+    background:white !important;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,0.06);
+}
+
+/* HEADER */
+
+#recent-actions-module h2{
+    background:linear-gradient(135deg,#0f172a,#334155) !important;
+    color:white !important;
+    padding:16px 20px !important;
+    font-size:16px !important;
+}
+
+/* ACTION LIST */
+
+.actionlist{
+    padding:18px;
+}
+
+/* EACH ACTION ITEM */
+
+.actionlist li{
+    list-style:none;
+    background:#f8fafc;
+    padding:14px;
+    border-radius:14px;
+    margin-bottom:12px;
+    border-left:4px solid #2563eb;
+    transition:0.3s;
+}
+
+/* HOVER EFFECT */
+
+.actionlist li:hover{
+    background:#eff6ff;
+    transform:translateX(4px);
+}
+
+/* LINKS */
+
+.actionlist a{
+    color:#2563eb !important;
+    font-weight:600;
+}
+
+.actionlist a:hover{
+    color:#1d4ed8 !important;
+}
+
+/* ========================================= */
+/* RESPONSIVE */
+/* ========================================= */
+
+@media(max-width:1000px){
+
+    #content-related{
+        margin-top:20px;
+    }
+
+}
+
+/* ========================================= */
+/* ADVANCED CONTROL PANEL TITLE */
+/* ========================================= */
+
+.dashboard-title{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+/* TITLE TEXT */
+
+.dashboard-title h1{
+    background:linear-gradient(135deg,#0f172a,#334155);
+    color:white;
+    padding:16px 40px;
+    border-radius:18px;
+    font-size:30px;
+    font-weight:700;
+    letter-spacing:1px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.12);
+    position:relative;
+    overflow:hidden;
+}
+
+/* GLOW EFFECT */
+
+.dashboard-title h1::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:rgba(255,255,255,0.15);
+    transform:skewX(-25deg);
+    transition:0.8s;
+}
+
+.dashboard-title h1:hover::before{
+    left:120%;
+}
+
+/* ========================================= */
+/* RESPONSIVE */
+/* ========================================= */
+
+@media(max-width:700px){
+
+    .dashboard-title h1{
+        font-size:22px;
+        padding:14px 24px;
+        text-align:center;
+    }
+
+}
+
+/* ========================================= */
+/* ADVANCED CONTROL PANEL TITLE */
+/* ========================================= */
+
+#content h1{
+    width:fit-content;
+    margin:25px auto 35px auto !important;
+    padding:16px 40px;
+    background:linear-gradient(135deg,#0f172a,#334155);
+    color:white !important;
+    font-size:30px !important;
+    font-weight:700;
+    border-radius:18px;
+    letter-spacing:1px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,0.12);
+    position:relative;
+    overflow:hidden;
+}
+
+/* SHINE EFFECT */
+
+#content h1::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:-120%;
+    width:100%;
+    height:100%;
+    background:rgba(255,255,255,0.15);
+    transform:skewX(-25deg);
+    transition:0.8s;
+}
+
+#content h1:hover::before{
+    left:120%;
+}
+
+/* ========================================= */
+/* RESPONSIVE */
+/* ========================================= */
+
+@media(max-width:700px){
+
+    #content h1{
+        font-size:22px !important;
+        padding:14px 24px;
+    }
+
+}

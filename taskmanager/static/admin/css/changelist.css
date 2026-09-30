@@ -1,0 +1,96 @@
+/* ================================================= */
+/* CHANGE LIST */
+/* ================================================= */
+
+body{
+    background:#f9f8f6;
+}
+
+/* CONTENT */
+
+#content{
+    padding:25px !important;
+}
+
+/* TABLE BOX */
+
+.results{
+    background:white;
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,0.05);
+}
+
+/* TABLE HEADER */
+
+.results thead th{
+
+    background:#6f8f8f !important;
+
+    color:white !important;
+
+    padding:15px !important;
+}
+
+/* TABLE BODY */
+
+.results tbody td{
+    padding:15px;
+    border-top:1px solid #ece7dd;
+}
+
+.results tbody tr:hover{
+    background:#faf7f2;
+}
+
+/* FILTER */
+
+#changelist-filter{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:18px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,0.05);
+}
+
+/* FILTER TITLE */
+
+#changelist-filter h2{
+
+    background:#6f8f8f;
+
+    color:white;
+
+    padding:12px;
+
+    border-radius:12px;
+}
+
+/* SEARCH */
+
+#changelist-search input{
+
+    border-radius:12px;
+
+    border:1px solid #d9d3c8;
+
+    padding:10px;
+}
+
+/* ACTION BAR */
+
+.actions{
+
+    background:white;
+
+    padding:12px;
+
+    border-radius:14px;
+
+    margin-bottom:15px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.04);
+}

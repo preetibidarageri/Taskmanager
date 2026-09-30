@@ -1,0 +1,262 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'accounts/css/dashboard.css' %}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">Task Manager</div>
+
+    <div class="nav-links">
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+        <a href="{% url 'tasks' %}">Tasks</a>
+        <a href="{% url 'add_task' %}">AddTask</a>
+        <a href="{% url 'pdf_workspace' %}" class="nav-link">PDF Tasks</a>
+        <a href="{% url 'calendar' %}">Calendar</a>
+        <a href="{% url 'reports' %}">Reports</a>
+        <a href="{% url 'profile' %}">Profile</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</div>
+
+<!-- HERO SECTION -->
+<div class="hero-section">
+
+    <!-- TOP CURVE -->
+    <div class="top-curve"></div>
+
+    <!-- PROFILE -->
+    <div class="profile-wrapper">
+
+        <form method="POST"
+              action="{% url 'update_profile_pic' %}"
+              enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <label for="profileUpload">
+
+                <img src="{{ request.user.profile_pic.url }}"
+                     class="profile-image"
+                     alt="profile">
+
+            </label>
+
+            <input type="file"
+                   id="profileUpload"
+                   name="profile_pic"
+                   onchange="this.form.submit()"
+                   hidden>
+
+        </form>
+
+    </div>
+
+    <!-- CONTENT -->
+    <div class="hero-content">
+
+        <h1 id="welcome">
+            Welcome Back, {{ request.user.username }}
+        </h1>
+
+        <p>
+            Stay organized, manage priorities,
+            and keep your productivity flowing
+            with your smart task management workspace.
+        </p>
+
+    </div>
+
+</div>
+<!-- STATS -->
+<div class="stats">
+
+    <div class="card total">
+        <h3>Total Tasks</h3>
+        <p>{{ total }}</p>
+    </div>
+
+    <div class="card pending">
+        <h3>Pending</h3>
+        <p>{{ todo|length }}</p>
+    </div>
+
+    <div class="card progress">
+        <h3>In Progress</h3>
+        <p>{{ progress|length }}</p>
+    </div>
+
+    <div class="card done">
+        <h3>Completed</h3>
+        <p>{{ done|length }}</p>
+    </div>
+
+    <div class="card overdue">
+        <h3>Overdue</h3>
+        <p>{{ overdue|length }}</p>
+    </div>
+
+</div>
+
+<!-- SEARCH + FILTER -->
+<div class="filter-bar">
+    <form method="GET">
+        <input type="text" name="q" placeholder="Search tasks...">
+        
+        <select name="priority">
+            <option value="">All Priority</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+
+        <button type="submit">Filter</button>
+    </form>
+</div>
+
+<!-- KANBAN BOARD -->
+<div class="board">
+
+    <!-- TODO -->
+    <div class="column todo">
+        <h3> Pending</h3>
+
+        {% for task in todo %}
+        <div class="task-card">
+            <div class="task-header">
+                <h4>{{ task.title }}</h4>
+                <span class="badge {{ task.priority|lower }}">{{ task.priority }}</span>
+            </div>
+
+            <p class="desc">{{ task.description }}</p>
+
+            <div class="task-footer">
+                <span>{{ task.due_date }}</span>
+            </div>
+
+            <div class="actions">
+                <a class="btn start" href="{% url 'move_task' task.id 'progress' %}">Start</a>
+                <a class="btn edit" href="{% url 'update_task' task.id %}">Edit</a>
+                <a class="btn delete" href="{% url 'delete_task' task.id %}">Delete</a>
+            </div>
+        </div>
+        {% empty %}
+        <p class="empty">No tasks</p>
+        {% endfor %}
+    </div>
+
+    <!-- IN PROGRESS -->
+    <div class="column progress">
+        <h3>In Progress</h3>
+
+        {% for task in progress %}
+        <div class="task-card">
+            <div class="task-header">
+                <h4>{{ task.title }}</h4>
+                <span class="badge {{ task.priority|lower }}">{{ task.priority }}</span>
+            </div>
+
+            <p class="desc">{{ task.description }}</p>
+
+            <div class="actions">
+                <a class="btn done" href="{% url 'move_task' task.id 'done' %}">Complete</a>
+                <a class="btn edit" href="{% url 'update_task' task.id %}">Edit</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- DONE -->
+    <div class="column done">
+        <h3>Completed</h3>
+
+        {% for task in done %}
+        <div class="task-card completed">
+            <h4>{{ task.title }}</h4>
+            <p class="desc">{{ task.description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+<footer class="lux-footer">
+
+    <div class="footer-top">
+
+        <h2>Manage Your Tasks Efficiently.</h2>
+
+    </div>
+
+    <hr>
+
+    <div class="footer-middle">
+
+        <div class="brand-section">
+
+            <h1>TaskManager</h1>
+
+            <p>
+                Organize tasks, manage projects,
+                track progress, and improve daily productivity
+                with a smart task management system.
+            </p>
+
+        </div>
+
+        <div class="footer-links">
+
+            <div>
+                <h4>Main Menu</h4>
+
+                <a href="#">Home</a>
+                <a href="#">Dashboard</a>
+                <a href="#">Tasks</a>
+                <a href="#">Add Tasks</a>
+            </div>
+
+            <div>
+                <h4>Productivity</h4>
+
+                <a href="#">PDF Tasks</a>
+                <a href="#">Calendar</a>
+                <a href="#">Reports</a>
+                <a href="#">Workspace</a>
+            </div>
+
+            <div>
+                <h4>Support</h4>
+
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Help Center</a>
+                <a href="#">Settings</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+        <p>© 2026 TaskFlow. All rights reserved.</p>
+
+        <div class="socials">
+
+            <a href="#">Instagram</a>
+
+            <a href="#">LinkedIn</a>
+
+            <a href="#">GitHub</a>
+
+        </div>
+
+    </div>
+
+</footer>
+</body>
+</html>

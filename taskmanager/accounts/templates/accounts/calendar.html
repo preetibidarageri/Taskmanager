@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calendar</title>
+    <link rel="stylesheet" href="{% static 'accounts/css/calendar.css' %}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">Task Manager</div>
+
+    <div class="nav-links">
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+        <a href="{% url 'tasks' %}">Tasks</a>
+        <a href="{% url 'add_task' %}">Add Task</a>
+        <a href="{% url 'pdf_workspace' %}" class="nav-link">PDF Tasks</a>
+        <a href="{% url 'calendar' %}">Calendar</a>
+        <a href="{% url 'reports' %}">Reports</a>
+         <a href="{% url 'profile' %}">Profile</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</div>
+
+<!-- CALENDAR CONTAINER -->
+<div class="calendar-wrapper">
+
+    <!-- TOP BAR -->
+    <div class="calendar-top">
+
+        <a class="month-btn"
+           href="?month={{ prev_month }}&year={{ prev_year }}">
+            ← Previous
+        </a>
+
+        <h2>{{ month_name }} {{ year }}</h2>
+
+        <a class="month-btn"
+           href="?month={{ next_month }}&year={{ next_year }}">
+            Next →
+        </a>
+
+    </div>
+
+    <!-- WEEK DAYS -->
+    <div class="weekdays">
+        <div>Sun</div>
+        <div>Mon</div>
+        <div>Tue</div>
+        <div>Wed</div>
+        <div>Thu</div>
+        <div>Fri</div>
+        <div>Sat</div>
+    </div>
+
+    <!-- CALENDAR GRID -->
+    <div class="calendar-grid">
+
+        {% for week in calendar_days %}
+            {% for day in week %}
+
+                {% if day == 0 %}
+                    <div class="empty"></div>
+
+                {% else %}
+                <div class="day-box">
+
+                    <div class="day-number">{{ day }}</div>
+
+                    <!-- TASKS OF DAY -->
+                    {% for task in tasks %}
+
+                        {% if task.due_date.day == day %}
+
+                        <div class="task 
+                            {% if task.priority == 'High' %}
+                                high
+                            {% elif task.priority == 'Medium' %}
+                                medium
+                            {% else %}
+                                low
+                            {% endif %}
+                        ">
+
+                            {{ task.title }}
+
+                        </div>
+
+                        {% endif %}
+                    {% endfor %}
+
+                </div>
+                {% endif %}
+
+            {% endfor %}
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

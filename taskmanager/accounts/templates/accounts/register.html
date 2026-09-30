@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'accounts/css/register.css' %}">
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'register' %}">Register</a>
+    </div>
+
+    <div class="container">
+        <!-- Left Form Section -->
+        <div class="form-box">
+            <h2>Register</h2>
+
+            <form method="POST" class="form-grid">
+                {% csrf_token %}
+                
+                <!-- Each pair will now sit in the grid -->
+                <div class="field-group">
+                    <label>Username</label>
+                    {{ form.username }}
+                </div>
+
+                <div class="field-group">
+                    <label>Email</label>
+                    {{ form.email }}
+                </div>
+
+                <div class="field-group">
+                    <label>Phone</label>
+                    {{ form.phone }}
+                </div>
+
+                <div class="field-group">
+                    <label>Role</label>
+                    {{ form.role }}
+                </div>
+
+                <div class="field-group">
+                    <label>Password</label>
+                    <input type="password" name="password">
+                </div>
+
+                <div class="field-group">
+                    <label>Confirm Password</label>
+                    <input type="password" name="confirm_password">
+                </div>
+
+                <button type="submit" class="full-width">Register</button>
+            </form>
+
+            <p class="login-text">
+                Already have an account?
+                <a href="{% url 'login' %}">Login</a>
+            </p>
+        </div>
+
+        <!-- Right Image Section -->
+        <div class="image-box">
+            <img src="{% static 'accounts/images/register.png' %}" alt="image" id="imgreg">
+        </div>
+    </div>
+</body>
+</html>

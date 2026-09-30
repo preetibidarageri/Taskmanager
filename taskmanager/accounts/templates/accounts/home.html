@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Manager</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'accounts/css/home.css' %}">
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'register' %}">Register</a>
+</div>
+
+<div class="container">
+
+    <!-- Left -->
+    <div class="left">
+        <h1>Manage Your Tasks Efficiently</h1>
+        <p>Organize, track and complete your tasks with ease.</p>
+
+        <a href="{% url 'login' %}" class="btn login-btn">Login</a>
+        <a href="{% url 'register' %}" class="btn register-btn">Register</a>
+    </div>
+
+    <!-- Right -->
+    <div class="right">
+        <div class="image-stack">
+            <img  class="img1" id="img1" src="{% static 'accounts/images/home_img1.png' %}">
+            <div class="box"></div>
+            <img  class="img2" id="img2" src="{% static 'accounts/images/home_img2.png' %}">
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

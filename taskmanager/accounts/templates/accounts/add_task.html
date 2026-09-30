@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Task</title>
+    <link rel="stylesheet" href="{% static 'accounts/css/add_task.css' %}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">Task Manager</div>
+
+    <div class="nav-links">
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+        <a href="{% url 'tasks' %}">Tasks</a>
+        <a href="{% url 'add_task' %}">AddTask</a>
+        <a href="{% url 'pdf_workspace' %}" class="nav-link">PDF Tasks</a>
+        <a href="{% url 'calendar' %}">Calendar</a>
+        <a href="{% url 'reports' %}">Reports</a>
+        <a href="{% url 'profile' %}">Profile</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</div>
+
+<!-- FORM CONTAINER -->
+<div class="form-container">
+
+    <h2>{% if form.instance.id %}Edit Task{% else %}Add New Task{% endif %}</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Title</label>
+        {{ form.title }}
+
+        <label>Description</label>
+        {{ form.description }}
+
+        <label>Priority</label>
+        {{ form.priority }}
+
+        <label>Status</label>
+        {{ form.status }}
+
+        <label>Due Date</label>
+        {{ form.due_date }}
+
+        <button type="submit">
+            {% if form.instance.id %}Update Task{% else %}Create Task{% endif %}
+        </button>
+    </form>
+
+</div>
+<footer class="lux-footer">
+
+    <div class="footer-top">
+
+        <h2>Manage Your Tasks Efficiently.</h2>
+
+    </div>
+
+    <hr>
+
+    <div class="footer-middle">
+
+        <div class="brand-section">
+
+            <h1>TaskManager</h1>
+
+            <p>
+                Organize tasks, manage projects,
+                track progress, and improve daily productivity
+                with a smart task management system.
+            </p>
+
+        </div>
+
+        <div class="footer-links">
+
+            <div>
+                <h4>Main Menu</h4>
+
+                <a href="#">Home</a>
+                <a href="#">Dashboard</a>
+                <a href="#">Tasks</a>
+                <a href="#">Add Tasks</a>
+            </div>
+
+            <div>
+                <h4>Productivity</h4>
+
+                <a href="#">PDF Tasks</a>
+                <a href="#">Calendar</a>
+                <a href="#">Reports</a>
+                <a href="#">Workspace</a>
+            </div>
+
+            <div>
+                <h4>Support</h4>
+
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Help Center</a>
+                <a href="#">Settings</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+        <p>© 2026 TaskFlow. All rights reserved.</p>
+
+        <div class="socials">
+
+            <a href="#">Instagram</a>
+
+            <a href="#">LinkedIn</a>
+
+            <a href="#">GitHub</a>
+
+        </div>
+
+    </div>
+
+</footer>
+</body>
+</html>

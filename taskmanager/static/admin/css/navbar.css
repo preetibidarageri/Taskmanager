@@ -1,0 +1,42 @@
+/* ================= NAVBAR ================= */
+
+#header{
+    background:chocolate;
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 30px;
+}
+
+/* TITLE */
+
+#site-name a{
+    color:white !important;
+    font-size:24px;
+    font-weight:700;
+    text-decoration:none;
+}
+
+/* USER TOOLS */
+
+#user-tools{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:rgba(255,255,255,0.15);
+    padding:8px 14px;
+    border-radius:12px;
+}
+
+#user-tools a{
+    color:white !important;
+    text-decoration:none;
+    padding:6px 10px;
+    border-radius:8px;
+    transition:0.3s;
+}
+
+#user-tools a:hover{
+    background:rgba(255,255,255,0.2);
+}

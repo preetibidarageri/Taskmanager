@@ -1,0 +1,176 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'accounts/css/profile.css' %}">
+</head>
+
+<body>
+    <!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">Task Manager</div>
+
+    <div class="nav-links">
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+        <a href="{% url 'tasks' %}">Tasks</a>
+        <a href="{% url 'add_task' %}">AddTask</a>
+        <a href="{% url 'pdf_workspace' %}" class="nav-link">PDF Tasks</a>
+        <a href="{% url 'calendar' %}">Calendar</a>
+        <a href="{% url 'reports' %}">Reports</a>
+        <a href="{% url 'profile' %}">Profile</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</div>
+
+<div class="profile-container">
+
+    <!-- LEFT PROFILE CARD -->
+    <div class="profile-card">
+
+        <!-- TOP CURVE -->
+        <div class="top-curve"></div>
+
+        <!-- PROFILE IMAGE -->
+        <div class="profile-image-box">
+            <img src="{{ request.user.profile_pic.url }}"
+                 class="profile-image"
+                 alt="Profile">
+        </div>
+
+        <!-- USER INFO -->
+        <div class="profile-info">
+
+            <h2>{{ request.user.username }}</h2>
+
+            <p class="role">
+                Task Management User
+            </p>
+
+            <a href="{% url 'dashboard' %}" class="edit-btn">
+                Edit Profile
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT DETAILS SECTION -->
+    <div class="details-card">
+
+        <h2>Profile Details</h2>
+
+        <div class="detail-box">
+            <span>Email</span>
+            <p>{{ request.user.email }}</p>
+        </div>
+
+        <div class="detail-box">
+            <span>Username</span>
+            <p>{{ request.user.username }}</p>
+        </div>
+
+        <div class="detail-box">
+            <span>Joined</span>
+            <p>{{ request.user.date_joined|date:"d M Y" }}</p>
+        </div>
+
+        <div class="detail-box">
+            <span>Status</span>
+            <p>Active User</p>
+        </div>
+
+        <div class="quote-box">
+            <p>
+                “Stay focused, organize smartly,
+                and complete tasks efficiently.”
+            </p>
+        </div>
+
+    </div>
+
+</div>
+<footer class="lux-footer">
+
+    <div class="footer-top">
+
+        <h2>Manage Your Tasks Efficiently.</h2>
+
+    </div>
+
+    <hr>
+
+    <div class="footer-middle">
+
+        <div class="brand-section">
+
+            <h1>TaskManager</h1>
+
+            <p>
+                Organize tasks, manage projects,
+                track progress, and improve daily productivity
+                with a smart task management system.
+            </p>
+
+        </div>
+
+        <div class="footer-links">
+
+            <div>
+                <h4>Main Menu</h4>
+
+                <a href="#">Home</a>
+                <a href="#">Dashboard</a>
+                <a href="#">Tasks</a>
+                <a href="#">Add Tasks</a>
+            </div>
+
+            <div>
+                <h4>Productivity</h4>
+
+                <a href="#">PDF Tasks</a>
+                <a href="#">Calendar</a>
+                <a href="#">Reports</a>
+                <a href="#">Workspace</a>
+            </div>
+
+            <div>
+                <h4>Support</h4>
+
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Help Center</a>
+                <a href="#">Settings</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+        <p>© 2026 TaskFlow. All rights reserved.</p>
+
+        <div class="socials">
+
+            <a href="#">Instagram</a>
+
+            <a href="#">LinkedIn</a>
+
+            <a href="#">GitHub</a>
+
+        </div>
+
+    </div>
+
+</footer>
+</body>
+</html>

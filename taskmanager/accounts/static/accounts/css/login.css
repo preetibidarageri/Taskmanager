@@ -1,0 +1,404 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #e6dfd3;
+}
+
+/* Navbar */
+.navbar {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 35px;
+    z-index: 10; /* Ensures navbar stays above boxes */
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #2f3e3e;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+/* Layout */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Changed to 100 to perfectly center vertically */
+}
+
+/* Combined Box Container */
+.login-wrapper {
+    display: flex;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    border-radius: 20px; /* Kept outer radius for the whole unit */
+    overflow: hidden; /* This clips the inner square corners to match the outer curve */
+}
+
+/* Login Box (Left Side) */
+.login-box {
+    background: #6f8f8f;
+    padding: 40px;
+    width: 300px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+label{
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.login-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 15px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    box-sizing: border-box; /* Fixes padding overflow */
+}
+
+.login-box button {
+    width: 100%;
+    padding: 10px;
+    background-color: #2f3e3e;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.login-box button:hover {
+    background-color: #1e2a2a;
+    transform: translateY(-2px);
+}
+
+.forgot, .register-text {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.forgot a, .register-text a {
+    color: #e6dfd3;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* Image Section (Right Side) */
+.image-box {
+    position: relative;
+    display: flex; /* Added for centering text */
+    justify-content: center; /* Horizontally center overlay */
+    align-items: center; /* Vertically center overlay */
+}
+
+.image-box img {
+    width: 400px;
+    height: 440px;
+    display: block; /* Removes bottom whitespace */
+    object-fit: cover;
+}
+
+/* Centered Overlay Text */
+.overlay-text {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.4); /* High transparency */
+    backdrop-filter: blur(1px); /* Modern glass look */
+    padding: 20px;
+    border-radius: 10px;
+    width: 250px;
+    text-align: center;
+    color:black;
+}
+
+.overlay-text h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+.overlay-text p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* ================= MODAL ================= */
+
+.modal {
+
+    display: none;
+
+    position: fixed;
+
+    z-index: 9999;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0,0,0,0.5);
+}
+/* SHOW MODAL */
+.modal.show{
+    display: block;
+}
+
+/* CLOSE BUTTON */
+.close{
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+    color: black;
+}
+.close:hover{
+    color: red;
+}
+
+/* ERROR MESSAGE */
+.popup-error{
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* FORGOT BUTTON STYLE */
+.forgot-btn{
+    background: none;
+    border: none;
+    color: #e6dfd3;
+    cursor: pointer;
+    font-size: 14px;
+}
+/* MODAL CONTENT */
+
+.modal-content {
+
+    background: white;
+
+    width: 350px;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    animation: popup 0.3s ease;
+}
+
+.message {
+
+    color: white;
+
+    background: green;
+
+    padding: 10px;
+
+    border-radius: 8px;
+
+    text-align: center;
+
+    margin-top: 10px;
+}
+/* POPUP MESSAGE */
+
+.popup-message {
+
+    padding: 10px;
+
+    margin-bottom: 15px;
+
+    border-radius: 8px;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    background: #d4edda;
+
+    color: #155724;
+
+    border: 1px solid #c3e6cb;
+}
+/* =======================
+   MOBILE RESPONSIVE
+======================= */
+
+@media (max-width: 992px){
+
+    /* Navbar */
+    .navbar{
+        width: 90%;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+        top: 15px;
+    }
+
+    .navbar a{
+        font-size: 17px;
+    }
+
+    /* Main Container */
+    .container{
+        height: auto;
+        padding: 120px 20px 40px;
+    }
+
+    /* Stack login + image vertically */
+    .login-wrapper{
+        flex-direction: column;
+        width: 100%;
+        max-width: 420px;
+    }
+
+    /* Login Box */
+    .login-box{
+        width: 100%;
+        padding: 35px 25px;
+    }
+
+    /* Image Box */
+    .image-box{
+        width: 100%;
+    }
+
+    .image-box img{
+        width: 100%;
+        height: 320px;
+    }
+
+    /* Overlay */
+    .overlay-text{
+        width: 80%;
+        padding: 16px;
+    }
+
+    .overlay-text h3{
+        font-size: 16px;
+    }
+
+    .overlay-text p{
+        font-size: 13px;
+    }
+}
+
+
+/* =======================
+   SMALL MOBILE
+======================= */
+
+@media (max-width: 600px){
+
+    body{
+        overflow-x: hidden;
+    }
+
+    /* Navbar */
+    .navbar{
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+
+        width: 100%;
+        padding: 20px 10px;
+
+        gap: 12px;
+    }
+
+    .navbar a{
+        font-size: 15px;
+    }
+
+    /* Container */
+    .container{
+        padding: 30px 15px;
+    }
+
+    /* Login Wrapper */
+    .login-wrapper{
+        width: 100%;
+        border-radius: 18px;
+    }
+
+    /* Login Box */
+    .login-box{
+        padding: 30px 20px;
+    }
+
+    .login-box h2{
+        font-size: 24px;
+    }
+
+    label{
+        font-size: 12px;
+    }
+
+    .login-box input{
+        padding: 11px;
+        font-size: 14px;
+    }
+
+    .login-box button{
+        padding: 11px;
+        font-size: 14px;
+    }
+
+    .forgot a,
+    .register-text a,
+    .forgot-btn{
+        font-size: 13px;
+    }
+
+    /* Image */
+    .image-box img{
+        height: 420px;
+    }
+
+    /* Overlay */
+    .overlay-text{
+        width: 85%;
+        padding: 14px;
+    }
+
+    .overlay-text h3{
+        font-size: 15px;
+    }
+
+    .overlay-text p{
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    /* Modal */
+    .modal-content{
+        width: 90%;
+        padding: 20px;
+    }
+
+    .close{
+        font-size: 22px;
+    }
+}

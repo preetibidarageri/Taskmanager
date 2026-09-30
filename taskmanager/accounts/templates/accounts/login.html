@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'accounts/css/login.css' %}">
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <a href="/">Home</a>
+    <a href="/login/">Login</a>
+    <a href="/register/">Register</a>
+</div>
+
+<div class="container">
+ 
+    <!-- Login Card -->
+    <div class="login-box">
+        <h2>Login</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label>USERNAME</label>
+            <input type="text" name="username" placeholder="Enter username">
+
+            <label>PASSWORD</label>
+            <input type="password" name="password" placeholder="Enter password">
+
+            <button type="submit">Login</button>
+        </form>
+        
+
+        <!-- Forgot Password -->
+       <p class="forgot">
+    <button type="button"
+            class="forgot-btn"
+            onclick="openModal()">
+        Forgot your password?
+    </button>
+</p>
+        <!-- Register Link -->
+        <p class="register-text">
+            New here?
+            <a href="{% url 'register' %}">Register</a>
+        </p>
+        
+
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+    </div>
+    
+
+    <!-- Right Image Section -->
+    <div class="image-box">
+        <img src="{% static 'accounts/images/login3.jpg' %}" alt="image">
+
+        <div class="overlay-text">
+            <h3>Welcome Back to Task Manager</h3>
+            <p>Organize, Track, and Achieve.<br>Simplify Your Workflow.</p>
+        </div>
+    </div>
+
+</div>
+<div id="forgotModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeModal()">&times;</span>
+
+        <h2>Reset Password</h2>
+
+        <!-- MESSAGE AREA -->
+        {% if messages %}
+    {% for message in messages %}
+
+        {% if message.tags == 'error' %}
+            <div class="popup-error">
+                {{ message }}
+            </div>
+
+        {% else %}
+            <div class="popup-message">
+                {{ message }}
+            </div>
+
+        {% endif %}
+
+    {% endfor %}
+{% endif %}
+
+        <form method="POST" action="{% url 'forgot_password' %}">
+
+            {% csrf_token %}
+
+            <input type="email"
+                   name="email"
+                   placeholder="Enter registered email"
+                   required>
+
+            <button type="submit">
+
+                Send Reset Link
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+</body>
+
+<script>
+
+const modal = document.getElementById("forgotModal");
+
+/* OPEN POPUP */
+function openModal() {
+    modal.classList.add("show");
+}
+
+/* CLOSE POPUP */
+function closeModal() {
+    modal.classList.remove("show");
+}
+
+</script>
+
+{% for message in messages %}
+
+    {% if 'forgot' in message.tags %}
+
+        <script>
+            modal.classList.add("show");
+        </script>
+
+    {% endif %}
+
+{% endfor %}
+
+
+
+
+
+
+
+</html>

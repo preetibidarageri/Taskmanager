@@ -1,0 +1,152 @@
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:#f9f8f6;
+    color:#2f3e3e;
+}
+
+/* NAVBAR */
+.navbar {
+    background: #4b0026;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+   position:fixed;
+ width: 95%;
+    top:0;
+    left:0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.nav-links a {
+    color: #f9f8f6;
+    margin-left: 20px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #c9a66b;
+}
+
+
+/* WRAPPER */
+
+.calendar-wrapper{
+    width:92%;
+    margin:40px auto;
+}
+
+/* TOP BAR */
+
+.calendar-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.calendar-top h2{
+    font-size:34px;
+    color:#1a2634;
+}
+
+.month-btn{
+    background:#6f8f8f;
+    color:white;
+    padding:12px 22px;
+    border-radius:10px;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.month-btn:hover{
+    background:#4a5d5d;
+}
+
+/* WEEKDAYS */
+
+.weekdays{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:10px;
+    margin-bottom:10px;
+}
+
+.weekdays div{
+    background:#1a2634;
+    color:white;
+    text-align:center;
+    padding:15px;
+    border-radius:12px;
+    font-weight:bold;
+}
+
+/* GRID */
+
+.calendar-grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:12px;
+}
+
+/* DAY BOX */
+
+.day-box{
+    background:white;
+    min-height:140px;
+    border-radius:16px;
+    padding:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.day-box:hover{
+    transform:translateY(-4px);
+}
+
+.empty{
+    background:transparent;
+}
+
+/* DAY NUMBER */
+
+.day-number{
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:10px;
+    color:#1a2634;
+}
+
+/* TASK */
+
+.task{
+    padding:8px 10px;
+    border-radius:8px;
+    margin-bottom:8px;
+    font-size:13px;
+    font-weight:600;
+    color:white;
+}
+
+/* PRIORITY COLORS */
+
+.high{
+    background:#b66d52;
+}
+
+.medium{
+    background:#c9a66b;
+    color:#1a2634;
+}
+
+.low{
+    background:#6f8f8f;
+}

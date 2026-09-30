@@ -1,0 +1,160 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tasks</title>
+    <link rel="stylesheet" href="{% static 'accounts/css/tasks.css' %}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">Task Manager</div>
+
+    <div class="nav-links">
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+        <a href="{% url 'tasks' %}">Tasks</a>
+        <a href="{% url 'add_task' %}">AddTask</a>
+        <a href="{% url 'pdf_workspace' %}" class="nav-link">PDF Tasks</a>
+        <a href="{% url 'calendar' %}">Calendar</a>
+        <a href="{% url 'reports' %}">Reports</a>
+        <a href="{% url 'profile' %}">Profile</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+    <h2>All Tasks</h2>
+</div>
+
+<!-- FILTER -->
+<div class="filter-bar">
+    <form method="GET">
+        <input type="text" name="q" placeholder="Search tasks...">
+
+        <select name="status">
+            <option value="">All Status</option>
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+        </select>
+
+        <select name="priority">
+            <option value="">All Priority</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+
+        <button type="submit">Filter</button>
+    </form>
+</div>
+
+<!-- TASK LIST -->
+<div class="task-container">
+
+    {% for task in tasks %}
+    <div class="task-card">
+
+        <div class="top">
+            <h3>{{ task.title }}</h3>
+            <span class="priority {{ task.priority|lower }}">{{ task.priority }}</span>
+        </div>
+
+        <p>{{ task.description }}</p>
+
+        <div class="meta">
+            <span>Status: {{ task.status }}</span>
+            <span>Due: {{ task.due_date }}</span>
+        </div>
+
+        <div class="actions">
+            <a href="{% url 'update_task' task.id %}" class="edit">Edit</a>
+            <a href="{% url 'delete_task' task.id %}" class="delete">Delete</a>
+        </div>
+
+    </div>
+    {% empty %}
+    <p class="empty">No tasks found</p>
+    {% endfor %}
+
+</div>
+<footer class="lux-footer">
+
+    <div class="footer-top">
+
+        <h2>Manage Your Tasks Efficiently.</h2>
+
+    </div>
+
+    <hr>
+
+    <div class="footer-middle">
+
+        <div class="brand-section">
+
+            <h1>TaskManager</h1>
+
+            <p>
+                Organize tasks, manage projects,
+                track progress, and improve daily productivity
+                with a smart task management system.
+            </p>
+
+        </div>
+
+        <div class="footer-links">
+
+            <div>
+                <h4>Main Menu</h4>
+
+                <a href="#">Home</a>
+                <a href="#">Dashboard</a>
+                <a href="#">Tasks</a>
+                <a href="#">Add Tasks</a>
+            </div>
+
+            <div>
+                <h4>Productivity</h4>
+
+                <a href="#">PDF Tasks</a>
+                <a href="#">Calendar</a>
+                <a href="#">Reports</a>
+                <a href="#">Workspace</a>
+            </div>
+
+            <div>
+                <h4>Support</h4>
+
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Help Center</a>
+                <a href="#">Settings</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+        <p>© 2026 TaskFlow. All rights reserved.</p>
+
+        <div class="socials">
+
+            <a href="#">Instagram</a>
+
+            <a href="#">LinkedIn</a>
+
+            <a href="#">GitHub</a>
+
+        </div>
+
+    </div>
+
+</footer>
+</body>
+</html>

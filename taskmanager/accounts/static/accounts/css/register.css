@@ -1,0 +1,370 @@
+/* General Reset */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: #e6dfd3;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%); /* This perfectly centers the element */
+    display: flex;
+    gap: 35px; /* Modern way to handle spacing without margins */
+}
+
+.navbar a  {
+    margin-left: 30px; 
+    text-decoration: none;
+    color: #2f3e3e;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+
+
+/* Main Layout Container */
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: row; /* Aligns Form and Image aside */
+    justify-content: center;
+    align-items: center;
+    gap: -5px;
+    padding: 10px;
+}
+
+/* Modernized Form Box */
+.form-box {
+    background-color: #6f8f8f;
+    padding: 42px; /* Reduced from 40px to save height */
+    width: 480px; /* Slightly wider for the 2-column grid */
+    color: white;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.form-box h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+/* 2-Column Grid Layout */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two fields side-by-side */
+    gap: 12px 20px; /* Vertical and Horizontal gap */
+}
+
+/* Field Grouping */
+.field-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.field-group label {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
+}
+
+/* Modern Inputs */
+.form-box input,
+.form-box select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    outline: none;
+    font-size: 14px;
+    background-color: #f8f9fa;
+    box-sizing: border-box; /* Fixes width overflow */
+    transition: border 0.3s ease;
+}
+
+.form-box input:focus {
+    border: 2px solid #2f3e3e;
+}
+
+/* Button (Spans full width of grid) */
+.form-box button {
+    grid-column: span 2; 
+    margin-top: 15px;
+    padding: 12px;
+    background-color: #2f3e3e;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+.form-box button:hover {
+    background-color: #1e2a2a;
+    transform: translateY(-2px);
+}
+
+/* Footer Text */
+.login-text {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.login-text a {
+    color: #e6dfd3;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.login-text a:hover {
+    text-decoration: underline;
+}
+
+/* Image Section */
+.image-box img {
+    width: 350px;
+    height: auto;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    object-fit: cover;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .form-grid {
+        grid-template-columns: 1fr; /* Stack fields on mobile */
+    }
+    .form-box button {
+        grid-column: span 1;
+    }
+    .form-box {
+        width: 90%;
+    }
+}
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 992px){
+
+    /* Navbar */
+    .navbar{
+        width: 90%;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+        top: 15px;
+    }
+
+    .navbar a{
+        font-size: 17px;
+        margin-left: 0;
+    }
+
+    /* Container */
+    .container{
+        flex-direction: column;
+        gap: 30px;
+        padding: 120px 20px 40px;
+    }
+
+    /* Form Box */
+    .form-box{
+        width: 100%;
+        max-width: 550px;
+        padding: 35px;
+    }
+
+    /* Form Grid */
+    .form-grid{
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+    }
+
+    /* Image */
+    .image-box img{
+        width: 320px;
+    }
+}
+
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 992px){
+
+    /* Navbar */
+    .navbar{
+        width: 90%;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+        top: 15px;
+    }
+
+    .navbar a{
+        font-size: 17px;
+        margin-left: 0;
+    }
+
+    /* Container */
+    .container{
+        flex-direction: column;
+        gap: 30px;
+        padding: 120px 20px 40px;
+    }
+
+    /* Form Box */
+    .form-box{
+        width: 100%;
+        max-width: 550px;
+        padding: 35px;
+    }
+
+    /* Form Grid */
+    .form-grid{
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+    }
+
+    /* Image */
+    .image-box img{
+        width: 320px;
+    }
+}
+
+
+/* =========================
+   MOBILE DEVICES
+========================= */
+
+@media (max-width: 768px){
+
+    body{
+        overflow-x: hidden;
+    }
+
+    /* Navbar */
+    .navbar{
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+
+        width: 100%;
+        padding: 20px 10px;
+
+        gap: 14px;
+
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .navbar a{
+        font-size: 15px;
+        margin-left: 0;
+    }
+
+    /* Main Container */
+    .container{
+        flex-direction: column;
+        padding: 30px 15px;
+        gap: 5px;
+    }
+
+    /* Form Box */
+    .form-box{
+        width: 100%;
+        padding: 28px 20px;
+        border-radius: 20px;
+    }
+
+    .form-box h2{
+        font-size: 24px;
+        margin-bottom: 18px;
+    }
+
+    /* Stack all fields */
+    .form-grid{
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    /* Inputs */
+    .form-box input,
+    .form-box select{
+        padding: 11px 14px;
+        font-size: 14px;
+    }
+
+    .field-group label{
+        font-size: 12px;
+    }
+
+    /* Button */
+    .form-box button{
+        grid-column: span 1;
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    /* Footer text */
+    .login-text{
+        font-size: 13px;
+    }
+
+    /* Image */
+    .image-box{
+        display: flex;
+        justify-content: center;
+    }
+
+    .image-box img{
+        width: 100%;
+        max-width: 300px;
+        border-radius: 20px;
+    }
+}
+
+
+/* =========================
+   VERY SMALL DEVICES
+========================= */
+
+@media (max-width: 480px){
+
+    .form-box{
+        padding: 24px 16px;
+    }
+
+    .form-box h2{
+        font-size: 22px;
+    }
+
+    .navbar a{
+        font-size: 14px;
+    }
+
+    .image-box img{
+        max-width: 260px;
+    }
+}

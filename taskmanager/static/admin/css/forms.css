@@ -1,0 +1,67 @@
+/* ================================================= */
+/* FORMS */
+/* ================================================= */
+
+body{
+    background:#f9f8f6;
+}
+
+/* FORM CONTAINER */
+
+#content-main{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:24px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,0.05);
+}
+
+/* LABEL */
+
+label{
+    color:#1a2634;
+    font-weight:600;
+}
+
+/* INPUT */
+
+input,
+textarea,
+select{
+
+    width:100%;
+
+    padding:12px;
+
+    border-radius:14px;
+
+    border:1px solid #ddd6c9 !important;
+
+    background:#faf8f4;
+}
+
+/* FOCUS */
+
+input:focus,
+textarea:focus,
+select:focus{
+
+    border:1px solid #b66d52 !important;
+
+    box-shadow:0 0 10px rgba(182,109,82,0.15);
+}
+
+/* BUTTON */
+
+.button,
+input[type=submit]{
+
+    background:#b66d52 !important;
+
+    color:white !important;
+
+    border:none !important;
+}

@@ -1,0 +1,182 @@
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:#f9f8f6;
+    color:#2f3e3e;
+}
+
+/* NAVBAR */
+.navbar {
+    background: #4b0026;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+   position:fixed;
+ width: 95%;
+    top:0;
+    left:0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.nav-links a {
+    color: #f9f8f6;
+    margin-left: 20px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #c9a66b;
+}
+/* HEADER */
+
+.report-header{
+    text-align:center;
+    padding:40px 20px;
+}
+
+.report-header h1{
+    font-size:42px;
+    color:#1a2634;
+}
+
+.report-header p{
+    color:#6f8f8f;
+    font-size:18px;
+}
+
+/* STATS */
+
+.stats-container{
+    width:92%;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:20px;
+}
+
+.stat-card{
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    text-align:center;
+    box-shadow:0 6px 18px rgba(0,0,0,0.08);
+}
+
+.stat-card h3{
+    margin-bottom:10px;
+}
+
+.stat-card p{
+    font-size:32px;
+    font-weight:bold;
+}
+
+.pending{
+    border-top:5px solid #b66d52;
+}
+
+.progress{
+    border-top:5px solid #c9a66b;
+}
+
+.completed{
+    border-top:5px solid #6f8f8f;
+}
+
+.overdue{
+    border-top:5px solid #a68a8a;
+}
+
+/* CHARTS */
+
+.charts-section{
+    width:92%;
+    margin:40px auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+}
+
+.chart-card{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* PRODUCTIVITY */
+
+.productivity-section{
+    width:92%;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+}
+
+.activity-card{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.08);
+}
+
+.activity-item{
+    background:#f4f4f4;
+    padding:15px;
+    border-radius:10px;
+    margin-top:10px;
+}
+
+.productivity-box{
+    text-align:center;
+    margin-top:40px;
+}
+
+.productivity-box h1{
+    font-size:70px;
+    color:#6f8f8f;
+}
+
+/* TABLE */
+
+.table-container{
+    width:92%;
+    margin:40px auto;
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.08);
+}
+
+.table-header{
+    margin-bottom:20px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+table th{
+    background:#1a2634;
+    color:white;
+    padding:15px;
+}
+
+table td{
+    padding:15px;
+    border-bottom:1px solid #ddd;
+}
+
+table tr:hover{
+    background:#f4f4f4;
+}

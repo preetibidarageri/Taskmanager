@@ -1,0 +1,75 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block extrastyle %}
+{{ block.super }}
+
+<link rel="stylesheet" href="{% static 'admin/css/login.css' %}">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+{% endblock %}
+
+{% block bodyclass %}login-page-body{% endblock %}
+
+{% block nav-sidebar %}
+{% endblock %}
+
+{% block breadcrumbs %}
+{% endblock %}
+
+{% block content %}
+
+<div class="custom-login-page">
+
+    <!-- LEFT SIDE -->
+    <div class="login-left">
+
+        <img src="{% static 'admin/images/login3.jpg' %}" alt="Background Image">
+
+        <div class="overlay"></div>
+
+        <div class="welcome-content">
+            <h1>Welcome To TaskManager Admin</h1>
+
+            <p>
+                Manage tasks, users, reports and workflows efficiently
+                using the Task Manager Dashboard.
+            </p>
+        </div>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="login-right">
+
+        <div class="login-box">
+
+            <h2>Admin Login</h2>
+
+            <form method="post">
+
+                {% csrf_token %}
+
+                <div class="input-group">
+                    {{ form.username }}
+                </div>
+
+                <div class="input-group">
+                    {{ form.password }}
+                </div>
+
+                <button type="submit">
+                    LOGIN
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

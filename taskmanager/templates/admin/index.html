@@ -1,0 +1,124 @@
+{% extends "admin/index.html" %}
+{% load static %}
+
+{% block extrastyle %}
+{{ block.super }}
+
+<link rel="stylesheet"
+      href="{% static 'admin/css/dashboard.css' %}">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+
+<!-- ================= CUSTOM DASHBOARD ================= -->
+
+<div class="custom-dashboard">
+
+    <div class="top-dashboard">
+
+        <!-- ================= DASHBOARD CARDS ================= -->
+
+        <div class="dashboard-cards">
+
+            <div class="dash-card users">
+                <h3>Total Users</h3>
+                <h1>{{ total_users }}</h1>
+            </div>
+
+            <div class="dash-card tasks">
+                <h3>Total Tasks</h3>
+                <h1>{{ total_tasks }}</h1>
+            </div>
+
+            <div class="dash-card pending">
+                <h3>Pending Tasks</h3>
+                <h1>{{ pending_tasks }}</h1>
+            </div>
+
+            <div class="dash-card completed">
+                <h3>Completed Tasks</h3>
+                <h1>{{ completed_tasks }}</h1>
+            </div>
+
+        </div>
+
+        <!-- ================= CHART ================= -->
+
+        <div class="chart-box">
+
+            <h2>User Analytics</h2>
+
+            <canvas id="userChart"></canvas>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= DJANGO ADMIN MODULES ================= -->
+
+<div class="django-admin-section">
+
+    {{ block.super }}
+
+</div>
+
+<!-- ================= CHART JS ================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const ctx = document.getElementById('userChart');
+
+new Chart(ctx, {
+
+    type: 'bar',
+
+    data: {
+
+        labels: ['Active Users', 'Total Users'],
+
+        datasets: [{
+
+            label: 'Users',
+
+            data: [
+                {{ active_users }},
+                {{ total_users }}
+            ],
+
+            backgroundColor: [
+                '#6f8f8f',
+                '#c9a66b'
+            ],
+
+            borderRadius: 10
+
+        }]
+    },
+
+    options: {
+
+        responsive: true,
+
+        plugins: {
+
+            legend: {
+                display: false
+            }
+
+        }
+
+    }
+
+});
+
+</script>
+
+{% endblock %}

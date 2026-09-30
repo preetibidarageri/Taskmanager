@@ -1,0 +1,31 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block extrastyle %}
+
+<link rel="stylesheet" href="{% static 'admin/css/admin.css' %}">
+<link rel="stylesheet" href="{% static 'admin/css/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'admin/css/tables.css' %}">
+<link rel="stylesheet" href="{% static 'admin/css/forms.css' %}">
+<link rel="stylesheet" href="{% static 'admin/css/navbar.css' %}">
+
+
+{% endblock %}
+
+{% block branding %}
+
+<div class="custom-header">
+
+    <div class="logo-section">
+        <h1>TASKFLOW</h1>
+    </div>
+
+    <div class="admin-user">
+        Welcome, {{ user.username }}
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

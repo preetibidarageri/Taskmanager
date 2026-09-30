@@ -1,0 +1,316 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #e6dfd3;
+    overflow-x: hidden;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 35px;
+    z-index: 1000;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #2f3e3e;
+    font-weight: 500;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    color: #4a5d5d;
+}
+
+
+/* ================= LAYOUT ================= */
+
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px;
+    position: relative;
+}
+
+
+/* ================= LEFT SECTION ================= */
+
+.left {
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 500px;
+}
+
+.left h1 {
+    font-size: 48px;
+    color: #2f3e3e;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.left p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+
+/* ================= BUTTONS ================= */
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+.login-btn {
+    background-color: #2f3e3e;
+    color: white;
+    border: 2px solid #2f3e3e;
+    margin-right: 15px;
+}
+
+.register-btn {
+    background-color: transparent;
+    color: #2f3e3e;
+    border: 2px solid #2f3e3e;
+}
+
+.login-btn:hover {
+    background-color: #4a5d5d;
+    border-color: #4a5d5d;
+    transform: translateY(-2px);
+}
+
+.register-btn:hover {
+    background-color: #2f3e3e;
+    color: white;
+    transform: translateY(-2px);
+}
+
+
+/* ================= RIGHT SECTION ================= */
+
+.right {
+    position: absolute;
+    right: 12%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.image-stack {
+    position: relative;
+    width: 500px;
+    height: 350px;
+}
+
+.box {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 3px solid #2f3e3e;
+    z-index: 2;
+}
+
+.image-stack img {
+    position: absolute;
+    height: auto;
+    border-radius: 8px;
+}
+
+.img1 {
+    bottom: -100px;
+    left: 40px;
+    z-index: 3;
+}
+
+.img2 {
+    top: -110px;
+    right: -190px;
+    z-index: 1;
+}
+
+#img1 {
+    width: 290px;
+}
+
+#img2 {
+    width: 400px;
+}
+
+
+/* ================= TABLET RESPONSIVE ================= */
+
+@media (max-width: 1024px) {
+
+    .left {
+        left: 5%;
+        max-width: 420px;
+    }
+
+    .left h1 {
+        font-size: 40px;
+    }
+
+    .right {
+        right: 5%;
+    }
+
+    .image-stack {
+        width: 420px;
+        height: 300px;
+    }
+
+    #img1 {
+        width: 240px;
+    }
+
+    #img2 {
+        width: 320px;
+    }
+
+    .img2 {
+        right: -120px;
+    }
+}
+
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .navbar {
+        width: 100%;
+        top: 15px;
+        gap: 18px;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0 10px;
+    }
+
+    .navbar a {
+        font-size: 16px;
+    }
+
+    .container {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 130px;
+        text-align: center;
+    }
+
+    .left {
+        position: relative;
+        left: 0;
+        top: 0;
+        transform: none;
+        max-width: 100%;
+        padding: 0 20px;
+    }
+
+    .left h1 {
+        font-size: 34px;
+    }
+
+    .left p {
+        font-size: 16px;
+    }
+
+    .btn {
+        padding: 10px 22px;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .right {
+        position: relative;
+        right: 0;
+        top: 0;
+        transform: none;
+        margin-top: 50px;
+    }
+
+    .image-stack {
+        width: 300px;
+        height: 240px;
+    }
+
+    .box {
+        width: 100%;
+        height: 100%;
+    }
+
+    #img1 {
+        width: 180px;
+    }
+
+    #img2 {
+        width: 230px;
+    }
+
+    .img1 {
+        bottom: -40px;
+        left: 15px;
+    }
+
+    .img2 {
+        top: -40px;
+        right: -40px;
+    }
+}
+
+
+/* ================= SMALL MOBILE ================= */
+
+@media (max-width: 480px) {
+
+    .left h1 {
+        font-size: 28px;
+    }
+
+    .left p {
+        font-size: 15px;
+    }
+
+    .navbar a {
+        font-size: 14px;
+    }
+
+    .image-stack {
+        width: 250px;
+        height: 200px;
+    }
+
+    #img1 {
+        width: 150px;
+    }
+
+    #img2 {
+        width: 190px;
+    }
+
+    .img2 {
+        right: -20px;
+    }
+}
