@@ -51,8 +51,5 @@ urlpatterns = [
 
 
 # MEDIA FILES
-if settings.DEBUG:
-    urlpatterns += static(
-        settings.MEDIA_URL,
-        document_root=settings.MEDIA_ROOT
-    )
+# Change the bottom block to this so images work on Render:
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
