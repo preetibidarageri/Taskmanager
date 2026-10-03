@@ -33,9 +33,9 @@ Deployed using **Render**.
 
 
 Task Manager
-├── Django Backend
-├── HTML Templates
-├── CSS
-├── JavaScript
-└── MySQL Database
+	Django Backend
+	HTML Templates
+	CSS
+	JavaScript
+	MySQL Database
 
